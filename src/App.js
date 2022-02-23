@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import axios from 'axios';
+import ApplicantForm from './ApplicantForm';
 import Applicant from './Applicant';
+import './App.css';
+
 
 const initialFormValues = {
   firstName: '',
@@ -32,7 +35,21 @@ export default function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
+const getApplicant = () => {
+  axios.get(`https://reqres.in/api/users`)
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => console.error(err))
+}
 
+const postNewApplicant = newApplicant => {
+  axios.post(`https://reqres.in/api/users`)
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => console.error(err))
+}
 
 
   return (
