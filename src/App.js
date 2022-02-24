@@ -3,6 +3,8 @@ import axios from 'axios';
 import ApplicantForm from './ApplicantForm';
 import Applicant from './Applicant';
 import './App.css';
+import formSchema from './formSchema';
+import * as yup from 'yup';
 
 
 const initialFormValues = {
@@ -54,6 +56,22 @@ const postNewApplicant = newApplicant => {
   .catch(err => console.error(err))
 }
 
+const validate = (name, value) => {
+  yup.reach(formSchema, name)
+    .validate(value)
+    .then(() => setFormErrors({ ...formErrors, [name]: '' }))
+    .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
+}
+
+const inputChange = (name, value) => {
+  // 🔥 STEP 10- RUN VALIDATION WITH YUP
+  validate(name, value);
+  setFormValues({
+    ...formValues,
+    [name]: value // NOT AN ARRAY
+  })
+}
+
 const formSubmit =
  () => {
    const newApplicant = {
@@ -85,16 +103,17 @@ const formSubmit =
       <ApplicantForm
       values={formValues}
       submit={formSubmit}
+      change={inputChange}
       disabled={disabled}
       errors={formErrors}
       />
-
-      {/* {/* {applicant.map(applicants => {
-        return (
-          <Applicant key={applicants.id} details={applicants}/>
-        ) */}
-      })} */}
-      </div>
+    {/* {applicant.map(applicants => {
+      return (
+        <Applicant key={applicants.id} details={applicants}/>
+      )
+    })} */}
+  
+      </div> 
 
       
     </div>
