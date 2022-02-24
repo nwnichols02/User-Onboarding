@@ -8,14 +8,14 @@ export default function ApplicantForm(props) {
     submit();
   };
 
-  const onChange = () => {
+  const onChange = (evt) => {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === "checkbox" ? checked : value;
     change(name, valueToUse);
   };
 
   return (
-    <form className="form-container">
+    <form className="form-container" onSubmit={onSubmit}>
       <div className="form-div">
         <h2>Personal Information</h2>
         <div className="errors">

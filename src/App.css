@@ -3,6 +3,12 @@ body {
   /* color:azure; */
 }
 
+.personalinfo {
+  background-color: aliceblue;
+  margin: 3%;
+  border-radius: 25px;
+  min-height: 50vh;
+}
 .App {
   text-align: center;
 }
