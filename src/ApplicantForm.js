@@ -129,7 +129,7 @@ export default function ApplicantForm(props) {
             />
           </label>
         </div>
-        <button disabled={disabled}>submit</button>
+        <button >submit</button>
       </div>
     </form>
   );
